@@ -10,6 +10,7 @@ class App extends Component {
     this.state = { 
       lectures: [],
       loading: true,
+      error: false,
       sort: {
         date: "asc",
         title: "asc",
@@ -23,18 +24,26 @@ class App extends Component {
       .then(response => response.text())
       .then(data => this.getItemsFromXML(data))
       .then(lectures => this.processLectures(lectures))
-      .catch(error => console.error(error.message))
+      .catch(error => {
+        this.setState({
+          error: true,
+          loading: false
+        });
+        console.error(error.message);
+      })
   }
 
   render() {
     if(this.state.loading) {
       return (<p>Loading...</p>);
+    } else if(this.state.error) {
+      return (<p>Could not load podcast feed. Please try refreshing this page.</p>);
     } else {
       return (
         <div className="App">
-          <p>Sort lectures by:&nbsp; 
-          <button onClick={this.sortDate}>Date</button>
-          <button onClick={this.sortTitle}>Title</button>
+          <p>Sort lectures by:&nbsp;
+          <button onClick={this.sortDate}>Date</button>&nbsp;
+          <button onClick={this.sortTitle}>Title</button>&nbsp;
           <button onClick={this.sortDuration}>Duration</button>
           </p>
           {this.state.lectures.map((lecture, index) => {
@@ -126,12 +135,12 @@ class App extends Component {
 
     newState.lectures.sort((a, b) => {
       if(newState.sort.duration === "asc") {
-        if(this.convertTime(a.duration) < this.convertTime(b.duration)) return -1;
-        if(this.convertTime(a.duration) > this.convertTime(b.duration)) return 1;
+        if(a.length < b.length) return -1;
+        if(a.length > b.length) return 1;
         return 0;
       } else {
-        if(this.convertTime(a.duration) > this.convertTime(b.duration)) return -1;
-        if(this.convertTime(a.duration) < this.convertTime(b.duration)) return 1;
+        if(a.length > b.length) return -1;
+        if(a.length < b.length) return 1;
         return 0;
       }
     });
@@ -143,14 +152,7 @@ class App extends Component {
       sort: newState.sort
     })
   };
-
-  convertTime = (duration) => {
-    let time = duration.split(':');
-    if(time.length === 3) {
-      time = [(time[0] * 60 + time[1]), time[2]];
-    }
-    return (time[0] * 60) + time[1];
-  };
+  
 }
 
 export default App;
