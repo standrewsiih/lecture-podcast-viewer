@@ -36,24 +36,25 @@ class App extends Component {
   render() {
     if(this.state.loading) {
       return (<p>Loading...</p>);
-    } else if(this.state.error) {
-      return (<p>Could not load podcast feed. Please try refreshing this page.</p>);
-    } else {
-      return (
-        <div className="App">
-          <p>Sort lectures by:&nbsp;
-          <button onClick={this.sortDate}>Date</button>&nbsp;
-          <button onClick={this.sortTitle}>Title</button>&nbsp;
-          <button onClick={this.sortDuration}>Duration</button>
-          </p>
-          {this.state.lectures.map((lecture, index) => {
-            return (
-              <Lecture key={index} {...lecture} />
-            )
-          })}
-        </div>
-      );
     }
+    if(this.state.error) {
+      return (<p>Could not load podcast feed. Please try refreshing this page.</p>);
+    }
+    
+    return (
+      <div className="App">
+        <p>Sort lectures by:&nbsp;
+        <button onClick={this.sortDate}>Date</button>&nbsp;
+        <button onClick={this.sortTitle}>Title</button>&nbsp;
+        <button onClick={this.sortDuration}>Duration</button>
+        </p>
+        {this.state.lectures.map((lecture, index) => {
+          return (
+            <Lecture key={index} {...lecture} />
+          )
+        })}
+      </div>
+    );
   }
 
   getItemsFromXML = (data) => {
