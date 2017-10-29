@@ -12,9 +12,9 @@ class App extends Component {
       loading: true,
       error: false,
       sort: {
-        date: "asc",
+        pubDate: "asc",
         title: "asc",
-        duration: "asc"
+        length: "asc"
       }
     }
   }
@@ -44,9 +44,9 @@ class App extends Component {
     return (
       <div className="App">
         <p>Sort lectures by:&nbsp;
-        <button onClick={this.sortDate}>Date</button>&nbsp;
-        <button onClick={this.sortTitle}>Title</button>&nbsp;
-        <button onClick={this.sortDuration}>Duration</button>
+        <button id="pubDate" onClick={this.sort}>Date</button>&nbsp;
+        <button id="title" onClick={this.sort}>Title</button>&nbsp;
+        <button id="length" onClick={this.sort}>Duration</button>
         </p>
         {this.state.lectures.map((lecture, index) => {
           return (
@@ -87,72 +87,31 @@ class App extends Component {
       }),
       loading: false
     });
-  }
+  }  
 
-  sortDate = () => {
-    let newState = {...this.state};
-
+  sort = (e) => {    
+    let type = e.target.id;
+    let newState = {...this.state};   
+     
     newState.lectures.sort((a, b) => {
-      if(newState.sort.date === "asc") {
-        return a.pubDate - b.pubDate;
+      if(newState.sort[type] === "asc") {
+        if(a[type] < b[type]) return -1;
+        if(a[type] > b[type]) return 1;
+        return 0;
       } else {
-        return b.pubDate - a.pubDate;
+        if(a[type] > b[type]) return -1;
+        if(a[type] < b[type]) return 1;
+        return 0;
       }
     });
     
-    newState.sort.date = (newState.sort.date === "asc") ? "desc" : "asc";
+    newState.sort[type] = (newState.sort[type] === "asc") ? "desc" : "asc";
 
     this.setState({
       lectures: newState.lectures,
       sort: newState.sort
     })
-  };
-
-  sortTitle = () => {
-    let newState = {...this.state};
-
-    newState.lectures.sort((a, b) => {
-      if(newState.sort.title === "asc") {
-        if(a.title < b.title) return -1;
-        if(a.title > b.title) return 1;
-        return 0;
-      } else {
-        if(a.title > b.title) return -1;
-        if(a.title < b.title) return 1;
-        return 0;
-      }
-    });
-    
-    newState.sort.title = (newState.sort.title === "asc") ? "desc" : "asc";
-
-    this.setState({
-      lectures: newState.lectures,
-      sort: newState.sort
-    })
-  };
-
-  sortDuration = () => {
-    let newState = {...this.state};
-
-    newState.lectures.sort((a, b) => {
-      if(newState.sort.duration === "asc") {
-        if(a.length < b.length) return -1;
-        if(a.length > b.length) return 1;
-        return 0;
-      } else {
-        if(a.length > b.length) return -1;
-        if(a.length < b.length) return 1;
-        return 0;
-      }
-    });
-    
-    newState.sort.duration = (newState.sort.duration === "asc") ? "desc" : "asc";
-
-    this.setState({
-      lectures: newState.lectures,
-      sort: newState.sort
-    })
-  };
+  };  
   
 }
 
