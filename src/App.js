@@ -93,9 +93,9 @@ class App extends Component {
 
     newState.lectures.sort((a, b) => {
       if(newState.sort.date === "asc") {
-        return new Date(a.pubDate) - new Date(b.pubDate);
+        return a.pubDate - b.pubDate;
       } else {
-        return new Date(b.pubDate) - new Date(a.pubDate);        
+        return b.pubDate - a.pubDate;
       }
     });
     
