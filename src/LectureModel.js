@@ -1,9 +1,12 @@
+import moment from 'moment';
+
 export default class Lecture {
   constructor(title, subtitle, summary, pubDate, duration, url) {
     this.title = title;
     this.subtitle = this.formatSubtitle(subtitle);
     this.summary = summary;
     this.pubDate = new Date(pubDate);
+    this.year = moment(this.pubDate).format('YYYY');
     this.duration = duration;
     this.length = this.calcLength(duration);
     this.url = url;

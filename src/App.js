@@ -15,7 +15,8 @@ class App extends Component {
         pubDate: "asc",
         title: "asc",
         length: "asc"
-      }
+      },
+      filter: "all"
     }
   }
 
@@ -40,21 +41,45 @@ class App extends Component {
     if(this.state.error) {
       return (<p>Could not load podcast feed. Please try refreshing this page.</p>);
     }
-    
+
     return (
       <div className="App">
         <p>Sort lectures by:&nbsp;
-        <button id="pubDate" onClick={this.sort}>Date</button>&nbsp;
-        <button id="title" onClick={this.sort}>Title</button>&nbsp;
+        <button id="pubDate" onClick={this.sort}>Date</button>
+        <button id="title" onClick={this.sort}>Title</button>
         <button id="length" onClick={this.sort}>Duration</button>
         </p>
-        {this.state.lectures.map((lecture, index) => {
-          return (
-            <Lecture key={index} {...lecture} />
-          )
+        <p>Show lectures from:&nbsp;
+        <button id="all" onClick={this.filter}>all years</button>
+        {this.getYearButtons()}
+        
+        </p>
+        {this.state.lectures.filter((lecture) => {
+          if(this.state.filter !== "all") {
+            return lecture.year === this.state.filter
+          } else {
+            return true;
+          }
+        }).map((lecture, index) => {
+          return <Lecture key={index} {...lecture} />
         })}
       </div>
     );
+  }
+
+  getYearButtons = () => {
+    let years = [];
+
+    this.state.lectures.filter((lecture) => {
+      if(years.indexOf(lecture.year) === -1) {
+        return years.push(lecture.year);
+      }
+      return false;
+    });
+
+    return years.sort().map((year, index) => {
+      return <button key={index} id={year} onClick={this.filter}>{year}</button>
+    });
   }
 
   getItemsFromXML = (data) => {
@@ -71,7 +96,7 @@ class App extends Component {
     });
 
     return lectures;
-  }
+  };
 
   processLectures = (lectures)  => {
     this.setState({
@@ -87,12 +112,12 @@ class App extends Component {
       }),
       loading: false
     });
-  }  
+  };
 
   sort = (e) => {    
     let type = e.target.id;
     let newState = {...this.state};   
-     
+
     newState.lectures.sort((a, b) => {
       if(newState.sort[type] === "asc") {
         if(a[type] < b[type]) return -1;
@@ -111,7 +136,13 @@ class App extends Component {
       lectures: newState.lectures,
       sort: newState.sort
     })
-  };  
+  };
+
+  filter = (e) => {
+    this.setState({
+      filter: e.target.id
+    })
+  };
   
 }
 
