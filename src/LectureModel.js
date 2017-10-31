@@ -13,10 +13,12 @@ export default class Lecture {
   }
 
   calcLength = (duration) => {
-    let time = duration.split(':');
+    let time = duration.split(':').map(Number);    
+
     if(time.length === 3) {
-      time = [(time[0] * 60 + time[1]), time[2]];
+      time = [(time[0] * 60) + time[1], time[2]];
     }
+
     return (time[0] * 60) + time[1];
   };
 
