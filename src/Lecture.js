@@ -3,11 +3,14 @@ import moment from 'moment';
 
 const Lecture = (props) => {
   return(
-    <div className="content-panel lecture">    
-      <h2 className="page-subheading">{props.title}</h2>
-      <strong>{moment(props.pubDate).format('dddd MMMM Do YYYY')}</strong>
-      <p>{props.subtitle}</p>
-      <p><audio preload="none" controls="controls"><source src={props.url} type="audio/mpeg" /></audio></p>
+    <div className="lecture">
+      <h2 class="page-heading">{props.year}</h2>
+      <div className="content-panel">    
+        <h2 className="page-subheading">{props.title}</h2>
+        <p className="date">{moment(props.pubDate).format('dddd MMMM Do YYYY')}</p>
+        <p>{props.subtitle}</p>
+        <p><audio preload="none" controls="controls"><source src={props.url} type="audio/mpeg" /></audio></p>
+      </div>
     </div>
   );
 };

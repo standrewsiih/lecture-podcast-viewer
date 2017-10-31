@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LectureModel from './LectureModel.js'
-import Lecture from './Lecture.js'
+import Lecture from './Lecture.js';
 import { xml2js } from 'xml-js';
 
 class App extends Component {
@@ -8,7 +8,7 @@ class App extends Component {
     super();
 
     this.state = { 
-      lectures: [],
+      lectures: [],      
       loading: true,
       error: false,
       sort: {
@@ -17,7 +17,7 @@ class App extends Component {
         length: "asc"
       },
       filter: "all"
-    }
+    };
   }
 
   componentDidMount() {
@@ -67,7 +67,7 @@ class App extends Component {
     );
   }
 
-  getYearButtons = () => {
+  getYearButtons = () => {    
     let years = [];
 
     this.state.lectures.filter((lecture) => {
