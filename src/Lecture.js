@@ -4,7 +4,6 @@ import moment from 'moment';
 const Lecture = (props) => {
   return(
     <div className="lecture">
-      <h2 class="page-heading">{props.year}</h2>
       <div className="content-panel">    
         <h2 className="page-subheading">{props.title}</h2>
         <p className="date">{moment(props.pubDate).format('dddd MMMM Do YYYY')}</p>
