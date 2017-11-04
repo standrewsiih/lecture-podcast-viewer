@@ -4,15 +4,13 @@ export function parsePodcastXML(url) {
   return fetch(url)
     .then(response => response.text())
     .then(data => {
-      let nodes = xml2js(data).elements[0].elements[0].elements;
-      let keys = Object.keys(nodes);
+      let xml = xml2js(data).elements[0].elements[0].elements;
       let items = [];
       
-      keys.map((key) => {
-        if(nodes[key].name === "item") {
-          return items.push(nodes[key].elements);
+      Object.keys(xml).map((key) => {
+        if(xml[key].name === "item") {
+          return items.push(xml[key].elements);
         }
-
         return false;
       });
 

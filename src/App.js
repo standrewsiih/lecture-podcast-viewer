@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import LectureModel from './LectureModel'
 import Lecture from './Lecture';
-import getPodcastFeed from './getPodcastFeed';
-import { xml2js } from 'xml-js';
+import { parsePodcastXML } from './Helpers';
 
 class App extends Component {
   constructor() {
@@ -18,14 +17,16 @@ class App extends Component {
         title: "asc",
         length: "asc"
       },
-      filter: "all"
+      filter: "all",
+      search: undefined
     };    
   }
 
   componentDidMount() {
-    const podcastFeed = getPodcastFeed('https://standrewsiih.github.io/lectures.xml');
+    const podcast = parsePodcastXML('https://standrewsiih.github.io/lectures.xml');
 
-    podcastFeed.then(lectures => this.processLectures(lectures))
+    podcast
+      .then(lectures => this.processLectures(lectures))
       .then(processedLectures => this.setYears(processedLectures))
       .catch(error => {
         this.setState({
@@ -34,9 +35,6 @@ class App extends Component {
         });
         console.error(error.message);
       });
-
-    // let response = getPodcastFeed('https://standrewsiih.github.io/lectures.xml');
-    // console.log(response);
   }
 
   render() {
@@ -45,32 +43,23 @@ class App extends Component {
     }
     if(this.state.error) {
       return (<p>Could not load podcast feed. Please try refreshing this page.</p>);
-    }
+    }    
 
     return (
       <div className="App">
         <p>Sort lectures by:&nbsp;
-        <button id="pubDate" onClick={this.sort}>Date</button>
-        <button id="title" onClick={this.sort}>Title</button>
-        <button id="length" onClick={this.sort}>Duration</button>
+          <button id="pubDate" onClick={this.sort}>Date</button>
+          <button id="title" onClick={this.sort}>Title</button>
+          <button id="length" onClick={this.sort}>Duration</button>
         </p>
         <p>Show lectures from:&nbsp;
-        <button id="all" onClick={this.filter}>all years</button>
-        {this.displayButtons()}        
+          <button id="all" onClick={this.filter}>all years</button>
+          {this.displayButtons()}        
         </p>
-        {this.state.lectures.filter((lecture) => {
-          if(this.state.filter !== "all") {
-            return lecture.year === this.state.filter
-          } else {
-            return true;
-          }
-        }).map((lecture, index) => {
-          return (
-            <div className="lecture" key={index}>
-              <Lecture {...lecture} />
-            </div>
-          )
-        })}
+        <p>Search lectures:&nbsp;
+          <input id="searchString" type="search" placeholder="Enter speaker or keyword" onChange={this.search}/>
+        </p>
+        {this.displayLectures()}
       </div>
     );
   }
@@ -94,23 +83,34 @@ class App extends Component {
     return this.state.years.map((year, index) => {
       return <button key={index} id={year} onClick={this.filter}>{year}</button>
     });
-  }
+  }  
 
-  getItemsFromXML = (data) => {
-    let rawData = xml2js(data).elements[0].elements[0].elements;
-    let items = Object.keys(rawData);
-    let lectures = [];
+  displayLectures = () => {
+    let lecturesToDisplay = this.state.lectures
+      .filter((lecture) => { // filter lectures
+        if(this.state.filter !== "all") {
+          return lecture.year === this.state.filter;
+        }
+        return true;
+      })
+      .filter((lecture) => { // search lectures
+        return this.searchLecture(lecture);
+      })
+      .map((lecture, index) => {
+        return (
+          <div className="lecture" key={index}>
+            <Lecture {...lecture} />
+          </div>
+        )
+      });
     
-    items.map((item) => {
-      if(rawData[item].name === "item") {
-        return lectures.push(rawData[item].elements);
-      }
-
-      return false;
-    });
-
-    return lectures;
-  };
+    if(lecturesToDisplay.length > 0) {
+      return lecturesToDisplay;      
+    }
+    else {
+      return (<p>No lecture descriptions matched your search terms.</p>);
+    }
+  }
 
   processLectures = (lectures)  => {
     this.setState({
@@ -132,10 +132,10 @@ class App extends Component {
 
   sort = (e) => {    
     let type = e.target.id;
-    let newState = {...this.state};   
+    let updatedState = {...this.state};   
 
-    newState.lectures.sort((a, b) => {
-      if(newState.sort[type] === "asc") {
+    updatedState.lectures.sort((a, b) => {
+      if(updatedState.sort[type] === "asc") {
         if(a[type] < b[type]) return -1;
         if(a[type] > b[type]) return 1;
         return 0;
@@ -146,19 +146,41 @@ class App extends Component {
       }
     });
     
-    newState.sort[type] = (newState.sort[type] === "asc") ? "desc" : "asc";
+    updatedState.sort[type] = (updatedState.sort[type] === "asc") ? "desc" : "asc";
 
     this.setState({
-      lectures: newState.lectures,
-      sort: newState.sort
-    })
+      lectures: updatedState.lectures,
+      sort: updatedState.sort
+    });
   };
 
   filter = (e) => {
     this.setState({
       filter: e.target.id
-    })
+    });
   };
+
+  search = (e) => {
+    let searchTerm = e.target.value.toLowerCase();
+
+    if(searchTerm.length < 3) {
+      searchTerm = undefined;
+    }
+
+    this.setState({
+      search: searchTerm
+    });
+  }  
+
+  searchLecture = (lecture) => {
+    if(this.state.search) {
+      if(lecture.title.toLowerCase().includes(this.state.search)) return true;
+      if(lecture.subtitle.toLowerCase().includes(this.state.search)) return true;
+      return false;
+    }
+
+    return true;
+  }
   
 }
 
