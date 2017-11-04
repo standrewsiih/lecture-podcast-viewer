@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import LectureModel from './LectureModel.js'
-import Lecture from './Lecture.js';
+import LectureModel from './LectureModel'
+import Lecture from './Lecture';
+import getPodcastFeed from './getPodcastFeed';
 import { xml2js } from 'xml-js';
 
 class App extends Component {
@@ -8,7 +9,8 @@ class App extends Component {
     super();
 
     this.state = { 
-      lectures: [],      
+      lectures: [],
+      years: [],
       loading: true,
       error: false,
       sort: {
@@ -17,21 +19,24 @@ class App extends Component {
         length: "asc"
       },
       filter: "all"
-    };
+    };    
   }
 
   componentDidMount() {
-    fetch('https://standrewsiih.github.io/lectures.xml')
-      .then(response => response.text())
-      .then(data => this.getItemsFromXML(data))
-      .then(lectures => this.processLectures(lectures))
+    const podcastFeed = getPodcastFeed('https://standrewsiih.github.io/lectures.xml');
+
+    podcastFeed.then(lectures => this.processLectures(lectures))
+      .then(processedLectures => this.setYears(processedLectures))
       .catch(error => {
         this.setState({
           error: true,
           loading: false
         });
         console.error(error.message);
-      })
+      });
+
+    // let response = getPodcastFeed('https://standrewsiih.github.io/lectures.xml');
+    // console.log(response);
   }
 
   render() {
@@ -51,8 +56,7 @@ class App extends Component {
         </p>
         <p>Show lectures from:&nbsp;
         <button id="all" onClick={this.filter}>all years</button>
-        {this.getYearButtons()}
-        
+        {this.displayButtons()}        
         </p>
         {this.state.lectures.filter((lecture) => {
           if(this.state.filter !== "all") {
@@ -61,23 +65,33 @@ class App extends Component {
             return true;
           }
         }).map((lecture, index) => {
-          return <Lecture key={index} {...lecture} />
+          return (
+            <div className="lecture" key={index}>
+              <Lecture {...lecture} />
+            </div>
+          )
         })}
       </div>
     );
   }
 
-  getYearButtons = () => {    
+  setYears = (lectures) => {
     let years = [];
 
-    this.state.lectures.filter((lecture) => {
+    lectures.filter((lecture) => {
       if(years.indexOf(lecture.year) === -1) {
         return years.push(lecture.year);
       }
       return false;
     });
 
-    return years.sort().map((year, index) => {
+    return this.setState({
+      years: years.sort()
+    });
+  }
+
+  displayButtons = () => {    
+    return this.state.years.map((year, index) => {
       return <button key={index} id={year} onClick={this.filter}>{year}</button>
     });
   }
@@ -105,13 +119,15 @@ class App extends Component {
           lecture[0].elements[0].text, // title
           lecture[1].elements[0].text, // subtitle
           lecture[2].elements[0].text, // summary
-          lecture[6].elements[0].text, // pubDate
+          new Date(lecture[6].elements[0].text), // pubDate
           lecture[7].elements[0].text, // duration
           lecture[5].elements[0].text  // url
         );
       }),
       loading: false
     });
+
+    return this.state.lectures;
   };
 
   sort = (e) => {    

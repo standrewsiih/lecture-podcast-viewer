@@ -5,7 +5,7 @@ export default class Lecture {
     this.title = title;
     this.subtitle = this.formatSubtitle(subtitle);
     this.summary = summary;
-    this.pubDate = new Date(pubDate);
+    this.pubDate = pubDate;
     this.year = moment(this.pubDate).format('YYYY');
     this.duration = duration;
     this.length = this.calcLength(duration);
