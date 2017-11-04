@@ -26,38 +26,31 @@ ShallowWrapper {
     "props": Object {
       "children": Array [
         <h2
-          class="page-heading"
-/>,
-        <div
-          className="content-panel"
+          className="page-subheading"
 >
-          <h2
-                    className="page-subheading"
+          some lecture
+</h2>,
+        <p
+          className="date"
+>
+          Tuesday February 14th 2017
+</p>,
+        <p>
+          some subtitle
+</p>,
+        <p>
+          <audio
+                    controls="controls"
+                    preload="none"
           >
-                    some lecture
-          </h2>
-          <p
-                    className="date"
-          >
-                    Tuesday February 14th 2017
-          </p>
-          <p>
-                    some subtitle
-          </p>
-          <p>
-                    <audio
-                              controls="controls"
-                              preload="none"
-                    >
-                              <source
-                                        src="https://www.intellectualhistory.net/some_lecture.mp3"
-                                        type="audio/mpeg"
-                              />
-                    </audio>
-          </p>
-</div>,
+                    <source
+                              src="https://www.intellectualhistory.net/some_lecture.mp3"
+                              type="audio/mpeg"
+                    />
+          </audio>
+</p>,
       ],
-      "className": "lecture",
+      "className": "content-panel",
     },
     "ref": null,
     "rendered": Array [
@@ -66,11 +59,11 @@ ShallowWrapper {
         "key": null,
         "nodeType": "host",
         "props": Object {
-          "children": undefined,
-          "class": "page-heading",
+          "children": "some lecture",
+          "className": "page-subheading",
         },
         "ref": null,
-        "rendered": null,
+        "rendered": "some lecture",
         "type": "h2",
       },
       Object {
@@ -78,118 +71,68 @@ ShallowWrapper {
         "key": null,
         "nodeType": "host",
         "props": Object {
-          "children": Array [
-            <h2
-              className="page-subheading"
->
-              some lecture
-</h2>,
-            <p
-              className="date"
->
-              Tuesday February 14th 2017
-</p>,
-            <p>
-              some subtitle
-</p>,
-            <p>
-              <audio
-                            controls="controls"
-                            preload="none"
-              >
-                            <source
-                                          src="https://www.intellectualhistory.net/some_lecture.mp3"
-                                          type="audio/mpeg"
-                            />
-              </audio>
-</p>,
-          ],
-          "className": "content-panel",
+          "children": "Tuesday February 14th 2017",
+          "className": "date",
         },
         "ref": null,
-        "rendered": Array [
-          Object {
-            "instance": null,
-            "key": null,
-            "nodeType": "host",
-            "props": Object {
-              "children": "some lecture",
-              "className": "page-subheading",
-            },
-            "ref": null,
-            "rendered": "some lecture",
-            "type": "h2",
-          },
-          Object {
-            "instance": null,
-            "key": null,
-            "nodeType": "host",
-            "props": Object {
-              "children": "Tuesday February 14th 2017",
-              "className": "date",
-            },
-            "ref": null,
-            "rendered": "Tuesday February 14th 2017",
-            "type": "p",
-          },
-          Object {
-            "instance": null,
-            "key": null,
-            "nodeType": "host",
-            "props": Object {
-              "children": "some subtitle",
-            },
-            "ref": null,
-            "rendered": "some subtitle",
-            "type": "p",
-          },
-          Object {
-            "instance": null,
-            "key": null,
-            "nodeType": "host",
-            "props": Object {
-              "children": <audio
-                controls="controls"
-                preload="none"
+        "rendered": "Tuesday February 14th 2017",
+        "type": "p",
+      },
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": "some subtitle",
+        },
+        "ref": null,
+        "rendered": "some subtitle",
+        "type": "p",
+      },
+      Object {
+        "instance": null,
+        "key": null,
+        "nodeType": "host",
+        "props": Object {
+          "children": <audio
+            controls="controls"
+            preload="none"
 >
-                <source
-                                src="https://www.intellectualhistory.net/some_lecture.mp3"
-                                type="audio/mpeg"
-                />
+            <source
+                        src="https://www.intellectualhistory.net/some_lecture.mp3"
+                        type="audio/mpeg"
+            />
 </audio>,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": <source
+              src="https://www.intellectualhistory.net/some_lecture.mp3"
+              type="audio/mpeg"
+/>,
+            "controls": "controls",
+            "preload": "none",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": null,
+            "nodeType": "host",
+            "props": Object {
+              "src": "https://www.intellectualhistory.net/some_lecture.mp3",
+              "type": "audio/mpeg",
             },
             "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": null,
-              "nodeType": "host",
-              "props": Object {
-                "children": <source
-                  src="https://www.intellectualhistory.net/some_lecture.mp3"
-                  type="audio/mpeg"
-/>,
-                "controls": "controls",
-                "preload": "none",
-              },
-              "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": null,
-                "nodeType": "host",
-                "props": Object {
-                  "src": "https://www.intellectualhistory.net/some_lecture.mp3",
-                  "type": "audio/mpeg",
-                },
-                "ref": null,
-                "rendered": null,
-                "type": "source",
-              },
-              "type": "audio",
-            },
-            "type": "p",
+            "rendered": null,
+            "type": "source",
           },
-        ],
-        "type": "div",
+          "type": "audio",
+        },
+        "type": "p",
       },
     ],
     "type": "div",
@@ -202,38 +145,31 @@ ShallowWrapper {
       "props": Object {
         "children": Array [
           <h2
-            class="page-heading"
-/>,
-          <div
-            className="content-panel"
+            className="page-subheading"
 >
-            <h2
-                        className="page-subheading"
+            some lecture
+</h2>,
+          <p
+            className="date"
+>
+            Tuesday February 14th 2017
+</p>,
+          <p>
+            some subtitle
+</p>,
+          <p>
+            <audio
+                        controls="controls"
+                        preload="none"
             >
-                        some lecture
-            </h2>
-            <p
-                        className="date"
-            >
-                        Tuesday February 14th 2017
-            </p>
-            <p>
-                        some subtitle
-            </p>
-            <p>
-                        <audio
-                                    controls="controls"
-                                    preload="none"
-                        >
-                                    <source
-                                                src="https://www.intellectualhistory.net/some_lecture.mp3"
-                                                type="audio/mpeg"
-                                    />
-                        </audio>
-            </p>
-</div>,
+                        <source
+                                    src="https://www.intellectualhistory.net/some_lecture.mp3"
+                                    type="audio/mpeg"
+                        />
+            </audio>
+</p>,
         ],
-        "className": "lecture",
+        "className": "content-panel",
       },
       "ref": null,
       "rendered": Array [
@@ -242,11 +178,11 @@ ShallowWrapper {
           "key": null,
           "nodeType": "host",
           "props": Object {
-            "children": undefined,
-            "class": "page-heading",
+            "children": "some lecture",
+            "className": "page-subheading",
           },
           "ref": null,
-          "rendered": null,
+          "rendered": "some lecture",
           "type": "h2",
         },
         Object {
@@ -254,118 +190,68 @@ ShallowWrapper {
           "key": null,
           "nodeType": "host",
           "props": Object {
-            "children": Array [
-              <h2
-                className="page-subheading"
->
-                some lecture
-</h2>,
-              <p
-                className="date"
->
-                Tuesday February 14th 2017
-</p>,
-              <p>
-                some subtitle
-</p>,
-              <p>
-                <audio
-                                controls="controls"
-                                preload="none"
-                >
-                                <source
-                                                src="https://www.intellectualhistory.net/some_lecture.mp3"
-                                                type="audio/mpeg"
-                                />
-                </audio>
-</p>,
-            ],
-            "className": "content-panel",
+            "children": "Tuesday February 14th 2017",
+            "className": "date",
           },
           "ref": null,
-          "rendered": Array [
-            Object {
-              "instance": null,
-              "key": null,
-              "nodeType": "host",
-              "props": Object {
-                "children": "some lecture",
-                "className": "page-subheading",
-              },
-              "ref": null,
-              "rendered": "some lecture",
-              "type": "h2",
-            },
-            Object {
-              "instance": null,
-              "key": null,
-              "nodeType": "host",
-              "props": Object {
-                "children": "Tuesday February 14th 2017",
-                "className": "date",
-              },
-              "ref": null,
-              "rendered": "Tuesday February 14th 2017",
-              "type": "p",
-            },
-            Object {
-              "instance": null,
-              "key": null,
-              "nodeType": "host",
-              "props": Object {
-                "children": "some subtitle",
-              },
-              "ref": null,
-              "rendered": "some subtitle",
-              "type": "p",
-            },
-            Object {
-              "instance": null,
-              "key": null,
-              "nodeType": "host",
-              "props": Object {
-                "children": <audio
-                  controls="controls"
-                  preload="none"
+          "rendered": "Tuesday February 14th 2017",
+          "type": "p",
+        },
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": "some subtitle",
+          },
+          "ref": null,
+          "rendered": "some subtitle",
+          "type": "p",
+        },
+        Object {
+          "instance": null,
+          "key": null,
+          "nodeType": "host",
+          "props": Object {
+            "children": <audio
+              controls="controls"
+              preload="none"
 >
-                  <source
-                                    src="https://www.intellectualhistory.net/some_lecture.mp3"
-                                    type="audio/mpeg"
-                  />
+              <source
+                            src="https://www.intellectualhistory.net/some_lecture.mp3"
+                            type="audio/mpeg"
+              />
 </audio>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": null,
+            "nodeType": "host",
+            "props": Object {
+              "children": <source
+                src="https://www.intellectualhistory.net/some_lecture.mp3"
+                type="audio/mpeg"
+/>,
+              "controls": "controls",
+              "preload": "none",
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": null,
+              "nodeType": "host",
+              "props": Object {
+                "src": "https://www.intellectualhistory.net/some_lecture.mp3",
+                "type": "audio/mpeg",
               },
               "ref": null,
-              "rendered": Object {
-                "instance": null,
-                "key": null,
-                "nodeType": "host",
-                "props": Object {
-                  "children": <source
-                    src="https://www.intellectualhistory.net/some_lecture.mp3"
-                    type="audio/mpeg"
-/>,
-                  "controls": "controls",
-                  "preload": "none",
-                },
-                "ref": null,
-                "rendered": Object {
-                  "instance": null,
-                  "key": null,
-                  "nodeType": "host",
-                  "props": Object {
-                    "src": "https://www.intellectualhistory.net/some_lecture.mp3",
-                    "type": "audio/mpeg",
-                  },
-                  "ref": null,
-                  "rendered": null,
-                  "type": "source",
-                },
-                "type": "audio",
-              },
-              "type": "p",
+              "rendered": null,
+              "type": "source",
             },
-          ],
-          "type": "div",
+            "type": "audio",
+          },
+          "type": "p",
         },
       ],
       "type": "div",

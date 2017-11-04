@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LectureModel from './LectureModel'
 import Lecture from './Lecture';
-import { parsePodcastXML } from './Helpers';
+import { getPodcastFeed, parsePodcastXML } from './Helpers';
 
 class App extends Component {
   constructor() {
@@ -23,9 +23,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const podcast = parsePodcastXML('https://standrewsiih.github.io/lectures.xml');
+    const podcast = getPodcastFeed('https://standrewsiih.github.io/lectures.xml');
 
-    podcast
+    parsePodcastXML(podcast)
       .then(lectures => this.processLectures(lectures))
       .then(processedLectures => this.setYears(processedLectures))
       .catch(error => {

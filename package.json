@@ -30,7 +30,8 @@
       "src/**/*.js",
       "!src/index.js",
       "!src/setupTests.js",
-      "!src/tempPolyfills.js"
+      "!src/tempPolyfills.js",
+      "!src/registerServiceWorker.js"
     ]
   }
 }
