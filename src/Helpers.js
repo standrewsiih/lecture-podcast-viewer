@@ -5,8 +5,8 @@ export const getPodcastFeed = (url) => {
     .then(response => response.text())
 };
 
-export const parsePodcastXML = (dataPromise) => {
-  return Promise.resolve(dataPromise)
+export const parsePodcastXML = (promise) => {
+  return promise
     .then(data => {
       const xml = xml2js(data);      
       const nodes = xml.elements[0].elements[0].elements;      

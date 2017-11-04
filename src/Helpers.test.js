@@ -26,8 +26,8 @@ describe('Helpers', () => {
       [{"elements": [{"text": "Natural law and casuistic reasoning in Roman jurisprudence", "type": "text"}], "name": "title", "type": "element"}]
     ];
     
-    it('should return an array of `items` from the provided XML text string', () => {
-      return parsePodcastXML(xmlString).then(response => {
+    it('should return an array of `items` from the resolved data promise', () => {
+      return parsePodcastXML(Promise.resolve(xmlString)).then(response => {
         expect(response).toEqual(expectedResponse);        
       })
     });
