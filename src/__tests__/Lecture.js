@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Lecture from './Lecture.js';
+import Lecture from '../Lecture';
 import moment from 'moment';
 
 describe('Lecture', () => {
@@ -12,7 +12,7 @@ describe('Lecture', () => {
     pubDate: new Date(1487076708000),
     duration: "59:59",
     url: "https://www.intellectualhistory.net/some_lecture.mp3"
-  }
+  };
   
   const lecture = shallow(<Lecture {...props}/>);
   

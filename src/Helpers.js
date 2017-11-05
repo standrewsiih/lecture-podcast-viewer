@@ -1,8 +1,7 @@
 import { xml2js } from 'xml-js';
 
 export const getPodcastFeed = (url) => {
-  return fetch(url)
-    .then(response => response.text())
+  return fetch(url).then(response => response.text());
 };
 
 export const parsePodcastXML = (promise) => {

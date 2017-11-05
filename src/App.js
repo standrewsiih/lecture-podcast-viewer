@@ -29,7 +29,7 @@ class App extends Component {
       .then(lectures => this.processLectures(lectures))
       .then(processedLectures => this.setYears(processedLectures))
       .catch(error => {
-        this.setState({
+         this.setState({
           error: true,
           loading: false
         });
@@ -37,7 +37,7 @@ class App extends Component {
       });
   }
 
-  render() {
+  render() {    
     if(this.state.loading) {
       return (<p>Loading...</p>);
     }
@@ -81,7 +81,7 @@ class App extends Component {
 
   displayButtons = () => {    
     return this.state.years.map((year, index) => {
-      return <button key={index} id={year} onClick={this.filter}>{year}</button>
+      return <button key={index} id={'y' + year} onClick={this.filter}>{year}</button>
     });
   }  
 
@@ -155,8 +155,9 @@ class App extends Component {
   };
 
   filter = (e) => {
+    let filter = e.target.id === 'all' ? e.target.id : e.target.id.substring(1);
     this.setState({
-      filter: e.target.id
+      filter: filter
     });
   };
 

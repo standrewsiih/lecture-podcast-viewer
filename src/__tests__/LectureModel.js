@@ -1,4 +1,4 @@
-import Lecture from './LectureModel.js';
+import Lecture from '../LectureModel';
 import moment from 'moment';
 
 describe('Lecture', () => {

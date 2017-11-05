@@ -31,7 +31,8 @@
       "!src/index.js",
       "!src/setupTests.js",
       "!src/tempPolyfills.js",
-      "!src/registerServiceWorker.js"
+      "!src/registerServiceWorker.js",
+      "!src/testConstants.js"
     ]
   }
 }
