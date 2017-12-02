@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactAudioPlayer from 'react-audio-player';
 import moment from 'moment';
 
 const Lecture = (props) => {
@@ -7,7 +8,7 @@ const Lecture = (props) => {
       <h2 className="page-subheading">{props.title}</h2>
       <p className="date">{moment(props.pubDate).format('dddd MMMM Do YYYY')}</p>
       <p>{props.subtitle}</p>
-      <p><audio preload="none" controls="controls"><source src={props.url} type="audio/mpeg" /></audio></p>
+      <ReactAudioPlayer preload="none" controls src={props.url} />
     </div>
   );
 };
