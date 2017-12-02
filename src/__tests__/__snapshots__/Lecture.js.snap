@@ -38,17 +38,29 @@ ShallowWrapper {
         <p>
           some subtitle
 </p>,
-        <p>
-          <audio
-                    controls="controls"
-                    preload="none"
-          >
-                    <source
-                              src="https://www.intellectualhistory.net/some_lecture.mp3"
-                              type="audio/mpeg"
-                    />
-          </audio>
-</p>,
+        <t
+          autoPlay={false}
+          className=""
+          controls={true}
+          controlsList=""
+          listenInterval={10000}
+          loop={false}
+          muted={false}
+          onAbort={[Function]}
+          onCanPlay={[Function]}
+          onCanPlayThrough={[Function]}
+          onEnded={[Function]}
+          onError={[Function]}
+          onListen={[Function]}
+          onLoadedMetadata={[Function]}
+          onPause={[Function]}
+          onPlay={[Function]}
+          onSeeked={[Function]}
+          preload="none"
+          src="https://www.intellectualhistory.net/some_lecture.mp3"
+          style={Object {}}
+          title=""
+/>,
       ],
       "className": "content-panel",
     },
@@ -92,47 +104,34 @@ ShallowWrapper {
       Object {
         "instance": null,
         "key": null,
-        "nodeType": "host",
+        "nodeType": "class",
         "props": Object {
-          "children": <audio
-            controls="controls"
-            preload="none"
->
-            <source
-                        src="https://www.intellectualhistory.net/some_lecture.mp3"
-                        type="audio/mpeg"
-            />
-</audio>,
+          "autoPlay": false,
+          "children": null,
+          "className": "",
+          "controls": true,
+          "controlsList": "",
+          "listenInterval": 10000,
+          "loop": false,
+          "muted": false,
+          "onAbort": [Function],
+          "onCanPlay": [Function],
+          "onCanPlayThrough": [Function],
+          "onEnded": [Function],
+          "onError": [Function],
+          "onListen": [Function],
+          "onLoadedMetadata": [Function],
+          "onPause": [Function],
+          "onPlay": [Function],
+          "onSeeked": [Function],
+          "preload": "none",
+          "src": "https://www.intellectualhistory.net/some_lecture.mp3",
+          "style": Object {},
+          "title": "",
         },
         "ref": null,
-        "rendered": Object {
-          "instance": null,
-          "key": null,
-          "nodeType": "host",
-          "props": Object {
-            "children": <source
-              src="https://www.intellectualhistory.net/some_lecture.mp3"
-              type="audio/mpeg"
-/>,
-            "controls": "controls",
-            "preload": "none",
-          },
-          "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": null,
-            "nodeType": "host",
-            "props": Object {
-              "src": "https://www.intellectualhistory.net/some_lecture.mp3",
-              "type": "audio/mpeg",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": "source",
-          },
-          "type": "audio",
-        },
-        "type": "p",
+        "rendered": null,
+        "type": [Function],
       },
     ],
     "type": "div",
@@ -157,17 +156,29 @@ ShallowWrapper {
           <p>
             some subtitle
 </p>,
-          <p>
-            <audio
-                        controls="controls"
-                        preload="none"
-            >
-                        <source
-                                    src="https://www.intellectualhistory.net/some_lecture.mp3"
-                                    type="audio/mpeg"
-                        />
-            </audio>
-</p>,
+          <t
+            autoPlay={false}
+            className=""
+            controls={true}
+            controlsList=""
+            listenInterval={10000}
+            loop={false}
+            muted={false}
+            onAbort={[Function]}
+            onCanPlay={[Function]}
+            onCanPlayThrough={[Function]}
+            onEnded={[Function]}
+            onError={[Function]}
+            onListen={[Function]}
+            onLoadedMetadata={[Function]}
+            onPause={[Function]}
+            onPlay={[Function]}
+            onSeeked={[Function]}
+            preload="none"
+            src="https://www.intellectualhistory.net/some_lecture.mp3"
+            style={Object {}}
+            title=""
+/>,
         ],
         "className": "content-panel",
       },
@@ -211,47 +222,34 @@ ShallowWrapper {
         Object {
           "instance": null,
           "key": null,
-          "nodeType": "host",
+          "nodeType": "class",
           "props": Object {
-            "children": <audio
-              controls="controls"
-              preload="none"
->
-              <source
-                            src="https://www.intellectualhistory.net/some_lecture.mp3"
-                            type="audio/mpeg"
-              />
-</audio>,
+            "autoPlay": false,
+            "children": null,
+            "className": "",
+            "controls": true,
+            "controlsList": "",
+            "listenInterval": 10000,
+            "loop": false,
+            "muted": false,
+            "onAbort": [Function],
+            "onCanPlay": [Function],
+            "onCanPlayThrough": [Function],
+            "onEnded": [Function],
+            "onError": [Function],
+            "onListen": [Function],
+            "onLoadedMetadata": [Function],
+            "onPause": [Function],
+            "onPlay": [Function],
+            "onSeeked": [Function],
+            "preload": "none",
+            "src": "https://www.intellectualhistory.net/some_lecture.mp3",
+            "style": Object {},
+            "title": "",
           },
           "ref": null,
-          "rendered": Object {
-            "instance": null,
-            "key": null,
-            "nodeType": "host",
-            "props": Object {
-              "children": <source
-                src="https://www.intellectualhistory.net/some_lecture.mp3"
-                type="audio/mpeg"
-/>,
-              "controls": "controls",
-              "preload": "none",
-            },
-            "ref": null,
-            "rendered": Object {
-              "instance": null,
-              "key": null,
-              "nodeType": "host",
-              "props": Object {
-                "src": "https://www.intellectualhistory.net/some_lecture.mp3",
-                "type": "audio/mpeg",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": "source",
-            },
-            "type": "audio",
-          },
-          "type": "p",
+          "rendered": null,
+          "type": [Function],
         },
       ],
       "type": "div",

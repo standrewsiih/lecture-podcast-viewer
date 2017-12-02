@@ -1,7 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Lecture from '../Lecture';
-import moment from 'moment';
 
 describe('Lecture', () => {
 
@@ -15,7 +14,7 @@ describe('Lecture', () => {
   };
   
   const lecture = shallow(<Lecture {...props}/>);
-  
+
   it('should render properly', () => {
     expect(lecture).toMatchSnapshot();
   });
@@ -26,11 +25,6 @@ describe('Lecture', () => {
   
   it('should display the date of publication', () => {
     expect(lecture.find('.date').text()).toBe('Tuesday February 14th 2017');
-  });
-
-  it('should contain an audio component', () => {
-    expect(lecture.find('audio').exists()).toBe(true);
-    expect(lecture.find('source').props().src).toBe(props.url);
   });
 
 });
