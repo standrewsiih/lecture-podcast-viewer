@@ -1,39 +1,52 @@
 {
   "name": "lecture-podcast-viewer",
-  "version": "0.3.0",
+  "author": "Kris Grint",
+  "version": "0.4.0",
   "private": true,
   "dependencies": {
-    "moment": "^2.19.1",
-    "react": "16.0.0",
-    "react-audio-player": "^0.6.4",
-    "react-dom": "16.0.0",
-    "xml-js": "^1.5.1"
+    "moment": "2.24.0",
+    "prop-types": "15.7.2",
+    "react": "16.9.0",
+    "react-audio-player": "0.11.1",
+    "react-dom": "16.9.0",
+    "xml-js": "1.6.11"
   },
   "devDependencies": {
-    "enzyme": "^3.1.0",
-    "enzyme-adapter-react-16": "^1.0.2",
-    "fetch-mock": "^5.12.2",
-    "gh-pages": "^1.0.0",
-    "jest-cli": "^20.0.4",
-    "react-scripts": "1.0.14",
-    "react-test-renderer": "^16.0.0"
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "7.6.0",
+    "@babel/plugin-proposal-class-properties": "7.5.5",
+    "@babel/preset-env": "7.6.0",
+    "@babel/preset-react": "7.0.0",
+    "@babel/register": "7.6.0",
+    "enzyme": "3.10.0",
+    "enzyme-adapter-react-16": "1.14.0",
+    "fetch-mock": "7.3.9",
+    "gh-pages": "2.1.1",
+    "jest-cli": "24.9.0",
+    "node-fetch": "2.6.0",
+    "parcel-bundler": "1.12.3",
+    "prettier": "1.18.2",
+    "react-hot-loader": "4.12.13"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "deploy": "npm run build&&gh-pages -d build"
+    "prebuild": "rm -rf dist",
+    "start": "parcel serve ./index.html --port 3000",
+    "build": "parcel build ./index.html",
+    "deploy": "yarn build && gh-pages -d build",
+    "test": "jest",    
+    "prettier": "prettier --write \"./{src,test}/**/*.js*\""
   },
   "homepage": "https://standrewsiih.github.io/lecture-podcast-viewer",
+  "browserslist": ["last 2 Chrome versions"],
   "jest": {
+    "setupFilesAfterEnv": [
+      "./src/setupTests.js"
+    ],
     "collectCoverageFrom": [
       "src/**/*.js",
       "!src/index.js",
       "!src/setupTests.js",
-      "!src/tempPolyfills.js",
-      "!src/registerServiceWorker.js",
-      "!src/testConstants.js"
+      "!src/tempPolyfills.js"
     ]
   }
 }

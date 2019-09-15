@@ -1,44 +1,42 @@
-import Lecture from '../LectureModel';
-import moment from 'moment';
+import Lecture from "../LectureModel";
 
-describe('Lecture', () => {
-
+describe("Lecture", () => {
   let mockLecture = [
-    'some title',
-    '', // subtitle
-    'some summary',
-    '', // pubDate
-    '', // duration
-    'https://www.intellectualhistory.net/some_lecture.mp3'];
+    "some title",
+    "", // subtitle
+    "some summary",
+    "", // pubDate
+    "", // duration
+    "https://www.intellectualhistory.net/some_lecture.mp3"
+  ];
 
-  it('should calculate the total length when the duration is under 1 hour', () => {
-    mockLecture[4] = '59:59'
+  it("should calculate the total length when the duration is under 1 hour", () => {
+    mockLecture[4] = "59:59";
     const underTest = new Lecture(...mockLecture);
     expect(underTest.length).toEqual(3599);
   });
 
-  it('should calculate the total length when the duration is over 1 hour', () => {
+  it("should calculate the total length when the duration is over 1 hour", () => {
     mockLecture[4] = "1:20:21";
-    const underTest = new Lecture(...mockLecture);    
+    const underTest = new Lecture(...mockLecture);
     expect(underTest.length).toEqual(4821);
   });
 
-  it('should return the year from the publication date', () => {
+  it("should return the year from the publication date", () => {
     mockLecture[3] = new Date(1487076708000);
-    const underTest = new Lecture(...mockLecture);    
-    expect(underTest.year).toEqual('2017');
+    const underTest = new Lecture(...mockLecture);
+    expect(underTest.year).toEqual("2017");
   });
 
-  it('should format the subtitle', () => {
+  it("should format the subtitle", () => {
     mockLecture[1] = "some subtitle";
-    const underTest = new Lecture(...mockLecture);    
-    expect(underTest.subtitle).toEqual('some subtitle.');
+    const underTest = new Lecture(...mockLecture);
+    expect(underTest.subtitle).toEqual("some subtitle.");
   });
 
-  it('should not format a subtitle that is already formatted', () => {
+  it("should not format a subtitle that is already formatted", () => {
     mockLecture[1] = "some subtitle.";
-    const underTest = new Lecture(...mockLecture);    
-    expect(underTest.subtitle).not.toEqual('some subtitle..');
+    const underTest = new Lecture(...mockLecture);
+    expect(underTest.subtitle).not.toEqual("some subtitle..");
   });
-    
 });
